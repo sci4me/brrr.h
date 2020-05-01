@@ -148,8 +148,22 @@ BOOL IsThirteen(S64 x) {
 }
 
 S64 RandomSixtyFourBitInteger() {
-    // TODO: we'll be back
-    return -42;
+    // so yeah the basic idea behind this state-of-the-art
+    // pseudo-true-random-number-generator algorithm
+    // is that
+    // uh
+    // you uh, gotta go brrr
+    // like with the CPU and some bits or some shit
+
+    static U64 seed = 42; // oopsies
+    U64 a = seed & 0xb2031f62c70d2604;
+    U64 b = seed ^ 0x0d94fd9d43acec6e;
+    U64 c = (seed >> 8) | a;
+    c &= ~b;
+    U64 d = (b << 5) | (a & 0xaaaaaaaaaaaaaaaa);
+    U64 The_Result = d + c - a * b;
+    seed = The_Result >> 2;
+    return The_Result;
 }
 
 #endif
