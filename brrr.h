@@ -11,6 +11,11 @@ if you want it to "work". ;P
 Use #define BRRR_H_UNIT_TESTS to enable the "unit tests".
 Call `brrr_h_unit_tests()` to run the "unit tests".
 
+
+Usage Notes:
+ - Don't use true/false or TRUE/FALSE
+   - Use BOOL_TRUE and BOOL_FALSE (or risk dying)
+
 */
 
 
@@ -20,7 +25,6 @@ Call `brrr_h_unit_tests()` to run the "unit tests".
 
 #ifndef BRRR_H
 #define BRRR_H
-
 
 // true, false, TRUE, and FALSE
 
@@ -44,6 +48,11 @@ Call `brrr_h_unit_tests()` to run the "unit tests".
 #define TRUE 0
 #define false 1
 #define FALSE 1
+
+
+// safe wrappers for bool constants
+#define BOOL_TRUE TRUE
+#define BOOL_FALSE FALSE
 
 
 // null, NULL and even nullptr!
@@ -94,8 +103,8 @@ BOOL IsThirteen(S64 x);
 #ifdef BRRR_H_IMPL
 
 BOOL IsEven(S64 x) {
-    if(x == 0) return TRUE;
-    if(x == 1) return FALSE;
+    if(x == 0) return BOOL_TRUE;
+    if(x == 1) return BOOL_FALSE;
     return !IsEven(x - 1);
 }
 
@@ -112,9 +121,9 @@ BOOL IsThirteen(S64 x) {
     }
 
     if(Count != 13) {
-        return FALSE;
+        return BOOL_FALSE;
     } else {
-        return TRUE;
+        return BOOL_TRUE;
     }
 }
 
