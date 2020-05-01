@@ -82,6 +82,7 @@ typedef U8 BOOL;
 // and now the good shizz...
 
 BOOL IsEven(S64 x);
+BOOL IsThirteen(S64 x);
 
 #endif
 
@@ -96,6 +97,25 @@ BOOL IsEven(S64 x) {
     if(x == 0) return TRUE;
     if(x == 1) return FALSE;
     return !IsEven(x - 1);
+}
+
+BOOL IsThirteen(S64 x) {
+    if(x < 0) {
+        U8 *poison_pill = (U8*) 0;
+        *poison_pill = 42;
+    }
+
+    U64 Count = 0;
+    while(x) {
+        Count++;
+        x = x - 1;
+    }
+
+    if(Count != 13) {
+        return FALSE;
+    } else {
+        return TRUE;
+    }
 }
 
 #endif
@@ -126,10 +146,22 @@ void _brrr_h_test_is_even() {
     assert(IsEven(1) == FALSE);
 }
 
+void _brrr_h_test_is_thirteen() {
+    assert(IsThirteen(12) == FALSE);
+    assert(IsThirteen(13) == TRUE);
+    assert(IsThirteen(14) == FALSE);
+
+    // oopsiees, we can't do that lol #F
+    // assert(IsThirteen(-12) == FALSE);
+    // assert(IsThirteen(-13) == FALSE);
+    // assert(IsThirteen(-14) == FALSE);
+}
+
 void brrr_h_unit_tests() {
     _brrr_h_test_true_false();
     _brrr_h_test_null();
     _brrr_h_test_is_even();
+    _brrr_h_test_is_thirteen();
 }
 
 #endif
