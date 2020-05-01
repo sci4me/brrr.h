@@ -1,3 +1,4 @@
+#define BRRR_H_IMPL
 #define BRRR_H_UNIT_TESTS
 #include "brrr.h"
 

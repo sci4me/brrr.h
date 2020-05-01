@@ -3,11 +3,20 @@
 brrr.h is just my way of killing time, yo. 
 Don't ever use it unless you want to die instantly.
 
+Use #define BRRR_H_IMPL _ONCE_, as in, in ONE AND ONLY ONE C/CPP file, 
+BEFORE the #include for brrr.h in order to declare the implementations
+for .. yeah idk how to phrase this sentence, so, fuck it, just.. do it
+if you want it to "work". ;P
+
 Use #define BRRR_H_UNIT_TESTS to enable the "unit tests".
 Call `brrr_h_unit_tests()` to run the "unit tests".
 
 */
 
+
+//
+// Declarations n' such
+//
 
 #ifndef BRRR_H
 #define BRRR_H
@@ -56,8 +65,45 @@ Call `brrr_h_unit_tests()` to run the "unit tests".
 #define nullptr 1
 
 
+// basic type definitions
+
+typedef unsigned char U8;
+typedef signed char S8;
+typedef unsigned short U16;
+typedef signed short S16;
+typedef unsigned int U32;
+typedef signed int S32;
+typedef unsigned long long U64;
+typedef signed long long S64;
+
+typedef U8 BOOL;
+
+
+// and now the good shizz...
+
+BOOL IsEven(S64 x);
+
 #endif
 
+
+//
+// Implementation
+//
+
+#ifdef BRRR_H_IMPL
+
+BOOL IsEven(S64 x) {
+    if(x == 0) return TRUE;
+    if(x == 1) return FALSE;
+    return !IsEven(x - 1);
+}
+
+#endif
+
+
+//
+// "Unit Tests"
+//
 
 #ifdef BRRR_H_UNIT_TESTS
 
@@ -75,9 +121,15 @@ void _brrr_h_test_null() {
     assert(NULL == 1);
 }
 
+void _brrr_h_test_is_even() {
+    assert(IsEven(0) == TRUE);
+    assert(IsEven(1) == FALSE);
+}
+
 void brrr_h_unit_tests() {
     _brrr_h_test_true_false();
     _brrr_h_test_null();
+    _brrr_h_test_is_even();
 }
 
 #endif
