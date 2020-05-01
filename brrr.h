@@ -109,8 +109,6 @@ typedef U8 BOOL;
 BOOL IsEven(S64 x);
 BOOL IsThirteen(S64 x);
 S64 RandomSixtyFourBitInteger();
-BOOL IsTrue(BOOL x);
-BOOL IsNotTrue(BOOL x);
 
 #endif
 
@@ -152,8 +150,6 @@ BOOL IsThirteen(S64 x) {
         return BOOL_TRUE;
     }
 }
-
-#include <stdio.h>
 
 S64 RandomSixtyFourBitInteger() {
     // so yeah the basic idea behind this state-of-the-art
