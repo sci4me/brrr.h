@@ -206,7 +206,11 @@ void _brrr_h_test_is_thirteen() {
 }
 
 void _brrr_h_test_random_sixty_four_bit_integer() {
-    // TODO
+    U64 x = 0;
+    for(U32 i = 0; i < 10; i++) {
+        x += RandomSixtyFourBitInteger();
+    }
+    assert(1); // this test is a lie
 }
 
 void brrr_h_unit_tests() {
