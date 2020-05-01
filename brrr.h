@@ -104,6 +104,7 @@ typedef U8 BOOL;
 
 BOOL IsEven(S64 x);
 BOOL IsThirteen(S64 x);
+S64 RandomSixtyFourBitInteger();
 
 #endif
 
@@ -117,7 +118,15 @@ BOOL IsThirteen(S64 x);
 BOOL IsEven(S64 x) {
     if(x == 0) return BOOL_TRUE;
     if(x == 1) return BOOL_FALSE;
-    return !IsEven(x - 1);
+
+    BOOL IsThePreviousGuy_Or_Gal_Even_Question_Mark = IsEven(x - 1);
+    if(IsThePreviousGuy_Or_Gal_Even_Question_Mark) {
+        return FALSE;
+    } else if(!IsThePreviousGuy_Or_Gal_Even_Question_Mark) {
+        return TRUE;
+    } else {
+        SELF_FUCKING_DESTRUCT();
+    }
 }
 
 BOOL IsThirteen(S64 x) {
@@ -136,6 +145,11 @@ BOOL IsThirteen(S64 x) {
     } else {
         return BOOL_TRUE;
     }
+}
+
+S64 RandomSixtyFourBitInteger() {
+    // TODO: we'll be back
+    return -42;
 }
 
 #endif
@@ -177,11 +191,16 @@ void _brrr_h_test_is_thirteen() {
     // assert(IsThirteen(-14) == FALSE);
 }
 
+void _brrr_h_test_random_sixty_four_bit_integer() {
+    // TODO
+}
+
 void brrr_h_unit_tests() {
     _brrr_h_test_true_false();
     _brrr_h_test_null();
     _brrr_h_test_is_even();
     _brrr_h_test_is_thirteen();
+    _brrr_h_test_random_sixty_four_bit_integer();
 }
 
 #endif
