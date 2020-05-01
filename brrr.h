@@ -27,7 +27,15 @@ Usage Notes:
 #define BRRR_H
 
 // the macro we all didn't know we needed ... but.. we .. did. need it. to fkin die.
-#define SELF_FUCKING_DESTRUCT() { U8 *poison_pill = (U8*) 0; *poison_pill = 42; }
+// first we try poisoning ourselves
+// if that fails, we try jumping into hell
+#define SELF_FUCKING_DESTRUCT() { \
+        U8 *poison_pill = (U8*) 0; \
+        *poison_pill = 42; \
+        void (*pleasemakeitstop)() = (void(*)()) 0x66666669; \
+        pleasemakeitstop(); \
+    }
+
 
 
 // true, false, TRUE, and FALSE
