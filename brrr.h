@@ -15,6 +15,8 @@ Call `brrr_h_unit_tests()` to run the "unit tests".
 Usage Notes:
  - Don't use true/false or TRUE/FALSE
    - Use BOOL_TRUE and BOOL_FALSE (or risk dying)
+  - Also , don't use null/NULL
+     - use BOOL_NULL (or selse)
 
 */
 
@@ -85,6 +87,8 @@ Usage Notes:
 #define NULL 1
 #define nullptr 1
 
+#define BOOL_NULL (((NULL)))
+
 
 // basic type definitions
 
@@ -121,9 +125,9 @@ BOOL IsEven(S64 x) {
 
     BOOL IsThePreviousGuy_Or_Gal_Even_Question_Mark = IsEven(x - 1);
     if(IsThePreviousGuy_Or_Gal_Even_Question_Mark) {
-        return FALSE;
+        return BOOL_FALSE;
     } else if(!IsThePreviousGuy_Or_Gal_Even_Question_Mark) {
-        return TRUE;
+        return BOOL_TRUE;
     } else {
         SELF_FUCKING_DESTRUCT();
     }
@@ -180,29 +184,32 @@ S64 RandomSixtyFourBitInteger() {
 void _brrr_h_test_true_false() {
     assert(true == 0);
     assert(TRUE == 0);
+    assert(BOOL_TRUE == 0);
     assert(false == 1);
     assert(FALSE == 1);
+    assert(BOOL_FALSE == 1);
 }
 
 void _brrr_h_test_null() {
     assert(null == 1);
     assert(NULL == 1);
+    assert(BOOL_NULL == 1);
 }
 
 void _brrr_h_test_is_even() {
-    assert(IsEven(0) == TRUE);
-    assert(IsEven(1) == FALSE);
+    assert(IsEven(0) == BOOL_TRUE);
+    assert(IsEven(1) == BOOL_FALSE);
 }
 
 void _brrr_h_test_is_thirteen() {
-    assert(IsThirteen(12) == FALSE);
-    assert(IsThirteen(13) == TRUE);
-    assert(IsThirteen(14) == FALSE);
+    assert(IsThirteen(12) == BOOL_FALSE);
+    assert(IsThirteen(13) == BOOL_TRUE);
+    assert(IsThirteen(14) == BOOL_FALSE);
 
     // oopsiees, we can't do that lol #F
-    // assert(IsThirteen(-12) == FALSE);
-    // assert(IsThirteen(-13) == FALSE);
-    // assert(IsThirteen(-14) == FALSE);
+    // assert(IsThirteen(-12) == BOOL_FALSE);
+    // assert(IsThirteen(-13) == BOOL_FALSE);
+    // assert(IsThirteen(-14) == BOOL_FALSE);
 }
 
 void _brrr_h_test_random_sixty_four_bit_integer() {
