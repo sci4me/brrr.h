@@ -109,6 +109,8 @@ typedef U8 BOOL;
 BOOL IsEven(S64 x);
 BOOL IsThirteen(S64 x);
 S64 RandomSixtyFourBitInteger();
+BOOL IsTrue(BOOL x);
+BOOL IsNotTrue(BOOL x);
 
 #endif
 
@@ -151,6 +153,8 @@ BOOL IsThirteen(S64 x) {
     }
 }
 
+#include <stdio.h>
+
 S64 RandomSixtyFourBitInteger() {
     // so yeah the basic idea behind this state-of-the-art
     // pseudo-true-random-number-generator algorithm
@@ -159,7 +163,14 @@ S64 RandomSixtyFourBitInteger() {
     // you uh, gotta go brrr
     // like with the CPU and some bits or some shit
 
-    static U64 seed = 42; // oopsies
+    static U64 seed;
+    static BOOL seed_initialized = BOOL_FALSE;
+    if(seed_initialized == BOOL_FALSE) {
+        seed_initialized = BOOL_TRUE;
+        U64 _seed; // #HackOfTheCentury ya'll, totally cryptographically secure too.
+        seed = _seed;
+    }
+
     U64 a = seed & 0xb2031f62c70d2604;
     U64 b = seed ^ 0x0d94fd9d43acec6e;
     U64 c = (seed >> 8) | a;
