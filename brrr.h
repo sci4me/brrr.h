@@ -51,8 +51,8 @@ Usage Notes:
 
 
 // safe wrappers for bool constants
-#define BOOL_TRUE TRUE
-#define BOOL_FALSE FALSE
+#define BOOL_TRUE (((TRUE)))
+#define BOOL_FALSE (((FALSE)))
 
 
 // null, NULL and even nullptr!
