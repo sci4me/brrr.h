@@ -26,6 +26,10 @@ Usage Notes:
 #ifndef BRRR_H
 #define BRRR_H
 
+// the macro we all didn't know we needed ... but.. we .. did. need it. to fkin die.
+#define SELF_FUCKING_DESTRUCT() { U8 *poison_pill = (U8*) 0; *poison_pill = 42; }
+
+
 // true, false, TRUE, and FALSE
 
 #ifdef true
@@ -110,8 +114,7 @@ BOOL IsEven(S64 x) {
 
 BOOL IsThirteen(S64 x) {
     if(x < 0) {
-        U8 *poison_pill = (U8*) 0;
-        *poison_pill = 42;
+        SELF_FUCKING_DESTRUCT();
     }
 
     U64 Count = 0;
